@@ -34,7 +34,7 @@ module Crewait
   def self.go!(*klasses)
     unless klasses.empty?
       klasses.each do |klass|
-        @@hash_of_hashes[klass].import_to_sql(klass)
+        @@hash_of_hashes[klass].import_to_sql(klass) if @@hash_of_hashes.has_key?(klass)
       end
     else
       @@hash_of_hashes.each do |key, hash|
