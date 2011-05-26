@@ -30,9 +30,16 @@ module Crewait
     hash
   end
   
-  def self.go!
-    @@hash_of_hashes.each do |key, hash|
-      hash.import_to_sql(key)
+
+  def self.go!(*klasses)
+    unless klasses.empty?
+      klasses.each do |klass|
+        @@hash_of_hashes[klass].import_to_sql(klass)
+      end
+    else
+      @@hash_of_hashes.each do |key, hash|
+        hash.import_to_sql(key)
+      end
     end
     @@hash_of_hashes = {}
     @@hash_of_next_inserts = {}
