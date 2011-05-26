@@ -16,7 +16,7 @@ module Crewait
     # if this class is new, create a new hash to receive it
     @@hash_of_hashes[model] ||= {}
     @@hash_of_hashes[model].respectively_insert(hash)
-    hash[:id] = @@hash_of_next_inserts[model] + @@hash_of_hashes[model].inner_length - 1
+    hash[:id] = @@hash_of_next_inserts[model] + @@hash_of_hashes[model].inner_length
     # add dummy methods
     unless @@config[:no_methods]
       eigenclass = class << hash; self; end
